@@ -1,0 +1,147 @@
+        :root {
+            --bg-color: #FFF0F5; /* lavender blush */
+            --text-main: #5D4037; /* soft brown */
+            --text-muted: #8D6E63;
+            --card-1: #FFD1DC; /* Pastel pink */
+            --card-2: #BDE0FE; /* Pastel blue */
+            --card-3: #C8E6C9; /* Pastel green */
+            --card-border: #FFFFFF;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Fredoka', sans-serif; }
+
+        body {
+            background-color: var(--bg-color);
+            background-image: radial-gradient(#FFC0CB 2px, transparent 2px);
+            background-size: 30px 30px;
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 3rem 2rem;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+            animation: bounceIn 1s cubic-bezier(0.28, 0.84, 0.42, 1);
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            color: #FF85A2;
+            text-shadow: 3px 3px 0px #FFF, 5px 5px 0px rgba(255, 133, 162, 0.2);
+            margin-bottom: 1rem;
+            letter-spacing: 2px;
+        }
+
+        p.subtitle { font-size: 1.2rem; color: var(--text-muted); font-weight: 500; }
+
+        .labs-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            width: 100%;
+            max-width: 1000px;
+        }
+
+        .lab-card {
+            background: #FFF;
+            border: 6px solid #FFF;
+            border-radius: 30px;
+            padding: 2rem;
+            text-decoration: none;
+            color: var(--text-main);
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            position: relative;
+            box-shadow: 0 10px 20px rgba(255, 182, 193, 0.3);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            transform: translateY(0);
+        }
+
+        .lab-card:nth-child(1) { background-color: var(--card-1); }
+        .lab-card:nth-child(2) { background-color: var(--card-2); }
+        .lab-card:nth-child(3) { background-color: var(--card-3); }
+
+        .lab-card:hover {
+            transform: translateY(-10px) rotate(-2deg);
+            box-shadow: 0 15px 25px rgba(255, 182, 193, 0.5);
+        }
+        
+        .lab-card:nth-child(even):hover {
+            transform: translateY(-10px) rotate(2deg);
+        }
+
+        .emoji-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            filter: drop-shadow(0 5px 5px rgba(0,0,0,0.1));
+        }
+
+        .lab-number {
+            background: rgba(255,255,255,0.7);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            color: var(--text-muted);
+        }
+
+        .lab-title {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-main);
+            font-weight: 700;
+        }
+
+        .lab-desc {
+            color: var(--text-main);
+            opacity: 0.8;
+            line-height: 1.5;
+            font-weight: 500;
+        }
+
+        @keyframes bounceIn {
+            0% { transform: scale(0.8); opacity: 0; }
+            50% { transform: scale(1.05); opacity: 1; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        /* 可愛特效 CSS */
+        .click-effect {
+            position: absolute;
+            pointer-events: none;
+            font-size: 2rem;
+            animation: floatUp 1s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+            transform: translate(-50%, -50%);
+            z-index: 9999;
+        }
+
+        @keyframes floatUp {
+            0% { transform: translate(-50%, -50%) scale(0.5) rotate(-15deg); opacity: 1; }
+            50% { transform: translate(-50%, -80px) scale(1.2) rotate(15deg); opacity: 0.9; }
+            100% { transform: translate(-50%, -150px) scale(1) rotate(-5deg); opacity: 0; }
+        }
+
+        .bubble {
+            position: absolute;
+            bottom: -50px;
+            background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.2));
+            border: 2px solid rgba(255, 255, 255, 0.6);
+            border-radius: 50%;
+            pointer-events: none;
+            animation: rise linear forwards;
+            z-index: 0;
+        }
+
+        @keyframes rise {
+            0% { transform: translateY(0) scale(0.8); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-110vh) scale(1.2); opacity: 0; }
+        }

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>猜歌遊戲 🎵</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <a href="../index.html" class="nav-back">👈 回首頁</a>
+
+    <div class="game-card">
+        <h1>猜歌遊戲 🎧</h1>
+        <p class="subtitle">仔細聽，這是哪一首歌呢？</p>
+
+        <div class="record" id="record">
+            <div class="record-center"></div>
+        </div>
+
+        <div class="controls">
+            <button id="playBtn">▶️ 播放音樂</button>
+        </div>
+
+        <div class="options">
+            <div class="option">A. 泡泡糖之戀</div>
+            <div class="option">B. 彩虹星空</div>
+            <div class="option">C. 可愛萬歲</div>
+        </div>
+    </div>
+
+    <script>
+        const playBtn = document.getElementById('playBtn');
+        const record = document.getElementById('record');
+        let isPlaying = false;
+
+        playBtn.addEventListener('click', () => {
+            isPlaying = !isPlaying;
+            if (isPlaying) {
+                record.classList.add('playing');
+                playBtn.innerHTML = '⏸️ 暫停音樂';
+            } else {
+                record.classList.remove('playing');
+                playBtn.innerHTML = '▶️ 播放音樂';
+            }
+        });
+    </script>
+</body>
+</html>

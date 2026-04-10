@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IMWeb Labs 💕</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header>
+        <h1>✨ 莓幫派 想加入嗎 ✨</h1>
+        <p class="subtitle">一起探索可愛的網頁設計與開發！</p>
+    </header>
+
+    <div class="labs-container">
+        <a href="lab1/index.html" class="lab-card">
+            <span class="lab-number">Lab 01</span>
+            <div class="emoji-icon">🎵</div>
+            <h2 class="lab-title">猜歌遊戲</h2>
+            <p class="lab-desc">聽音樂來猜歌名！挑戰你的耳朵和音樂記憶～</p>
+        </a>
+
+        <a href="lab2/index.html" class="lab-card">
+            <span class="lab-number">Lab 02</span>
+            <div class="emoji-icon">📸</div>
+            <h2 class="lab-title">照相亭</h2>
+            <p class="lab-desc">打開相機，擺個可愛的姿勢，拍下美好的瞬間！</p>
+        </a>
+
+        <a href="lab3/index.html" class="lab-card">
+            <span class="lab-number">Lab 03</span>
+            <div class="emoji-icon">🎨</div>
+            <h2 class="lab-title">自己發想</h2>
+            <p class="lab-desc">自由發揮的沙盒空間，實現你最棒的創意！</p>
+        </a>
+    </div>
+
+    <!-- 可愛特效腳本 -->
+    <script>
+        // 點擊特效：愛心與星星
+        document.addEventListener('click', function (e) {
+            const effect = document.createElement('div');
+            effect.className = 'click-effect';
+            effect.style.left = e.pageX + 'px';
+            effect.style.top = e.pageY + 'px';
+
+            const emojis = ['✨', '💖', '🌸', '🎀', '⭐', '🎈'];
+            effect.innerText = emojis[Math.floor(Math.random() * emojis.length)];
+
+            document.body.appendChild(effect);
+
+            setTimeout(() => { effect.remove(); }, 1000);
+        });
+
+        // 隨機產生夢幻泡泡
+        function createBubble() {
+            const bubble = document.createElement('div');
+            bubble.className = 'bubble';
+            const size = Math.random() * 30 + 15; // 15px ~ 45px
+            bubble.style.width = size + 'px';
+            bubble.style.height = size + 'px';
+            bubble.style.left = Math.random() * 100 + 'vw';
+            bubble.style.animationDuration = Math.random() * 4 + 5 + 's'; // 5s ~ 9s
+
+            document.body.appendChild(bubble);
+
+            setTimeout(() => { bubble.remove(); }, 9000);
+        }
+
+        setInterval(createBubble, 600);
+    </script>
+</body>
+
+</html>
