@@ -3,47 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>猜歌遊戲 🎵</title>
+    <title>盧廣仲猜歌挑戰 🎶 | 莓莓實驗室</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <a href="../index.html" class="nav-back">👈 回首頁</a>
+    <a href="../index.html" class="nav-back">◀ 回首頁</a>
 
     <div class="game-card">
-        <h1>猜歌遊戲 🎧</h1>
-        <p class="subtitle">仔細聽，這是哪一首歌呢？</p>
+        <h1>猜歌挑戰 🎧</h1>
+        <p class="subtitle">這首「盧廣仲」的歌是哪一個呢？</p>
 
-        <div class="record" id="record">
-            <div class="record-center"></div>
+        <div class="stats">
+            <span id="score">分數: 0</span>
+            <span id="level">關卡: 1/10</span>
         </div>
 
-        <div class="controls">
-            <button id="playBtn">▶️ 播放音樂</button>
+        <div class="record-container">
+            <div class="record" id="record">
+                <div class="record-center">🎵</div>
+            </div>
+            <div class="music-notes" id="music-notes">
+                <span class="note note-1">♫</span>
+                <span class="note note-2">♬</span>
+                <span class="note note-3">♪</span>
+            </div>
         </div>
 
-        <div class="options">
-            <div class="option">A. 泡泡糖之戀</div>
-            <div class="option">B. 彩虹星空</div>
-            <div class="option">C. 可愛萬歲</div>
+        <div class="options" id="options-container">
+            <!-- 選項會動態插入 -->
         </div>
+
+        <button id="next-btn" class="btn-next">下一題 ➔</button>
     </div>
 
-    <script>
-        const playBtn = document.getElementById('playBtn');
-        const record = document.getElementById('record');
-        let isPlaying = false;
+    <!-- 隱藏的 YouTube 播放器 -->
+    <div id="player" style="display: none;"></div>
 
-        playBtn.addEventListener('click', () => {
-            isPlaying = !isPlaying;
-            if (isPlaying) {
-                record.classList.add('playing');
-                playBtn.innerHTML = '⏸️ 暫停音樂';
-            } else {
-                record.classList.remove('playing');
-                playBtn.innerHTML = '▶️ 播放音樂';
-            }
-        });
-    </script>
+    <!-- 開始遊戲遮罩 (處理自動播放限制) -->
+    <div id="start-overlay" class="result-overlay" style="display: flex; background: rgba(255, 245, 247, 0.98);">
+        <h2 style="color: #FF8DA1;">準備好聽歌了嗎？</h2>
+        <p style="color: #6B4F4F;">點擊下方按鈕開始挑戰盧廣仲！</p>
+        <button id="real-start-btn" class="btn-next show">啟動挑戰 🎸</button>
+    </div>
+
+    <div id="result-overlay" class="result-overlay">
+        <h2 id="result-title">挑戰結束！</h2>
+        <p id="result-score">最終得分：0</p>
+        <button onclick="location.reload()" class="btn-next show">再玩一次 🧸</button>
+    </div>
+
+    <!-- 載入 YouTube API -->
+    <script src="https://www.youtube.com/iframe_api"></script>
+    <script src="script.js"></script>
 </body>
 </html>

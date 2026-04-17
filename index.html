@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IMWeb Labs 💕</title>
+    <title>莓莓實驗室 🌸 | 超可愛空間</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -14,33 +14,33 @@
 <body>
     <header>
         <h1>✨ 莓幫派 想加入嗎 ✨</h1>
-        <p class="subtitle">一起探索可愛的網頁設計與開發！</p>
+        <p class="subtitle">一起探索最可愛的創意空間！</p>
     </header>
 
     <div class="labs-container">
         <a href="lab1/index.html" class="lab-card">
-            <span class="lab-number">Lab 01</span>
+            <span class="lab-number">LAB 01</span>
             <div class="emoji-icon">🎵</div>
             <h2 class="lab-title">猜歌遊戲</h2>
             <p class="lab-desc">聽音樂來猜歌名！挑戰你的耳朵和音樂記憶～</p>
         </a>
 
         <a href="lab2/index.html" class="lab-card">
-            <span class="lab-number">Lab 02</span>
+            <span class="lab-number">LAB 02</span>
             <div class="emoji-icon">📸</div>
             <h2 class="lab-title">照相亭</h2>
             <p class="lab-desc">打開相機，擺個可愛的姿勢，拍下美好的瞬間！</p>
         </a>
 
         <a href="lab3/index.html" class="lab-card">
-            <span class="lab-number">Lab 03</span>
+            <span class="lab-number">LAB 03</span>
             <div class="emoji-icon">🎨</div>
             <h2 class="lab-title">自己發想</h2>
             <p class="lab-desc">自由發揮的沙盒空間，實現你最棒的創意！</p>
         </a>
     </div>
 
-    <!-- 可愛特效腳本 -->
+    <!-- 酷酷特效腳本 -->
     <script>
         // 點擊特效：愛心與星星
         document.addEventListener('click', function (e) {
@@ -49,7 +49,8 @@
             effect.style.left = e.pageX + 'px';
             effect.style.top = e.pageY + 'px';
 
-            const emojis = ['✨', '💖', '🌸', '🎀', '⭐', '🎈'];
+            const emojis = ['💖', '✨', '🌸', '🎀', '⭐', '🎈', '🍭', '🧸', '🌈'];
+            
             effect.innerText = emojis[Math.floor(Math.random() * emojis.length)];
 
             document.body.appendChild(effect);
@@ -57,16 +58,43 @@
             setTimeout(() => { effect.remove(); }, 1000);
         });
 
+        // 隨機產生背景貼紙 (Stickers)
+        function createSticker() {
+            const sticker = document.createElement('div');
+            sticker.className = 'sticker';
+            const emojis = ['🌸', '🎀', '🧸', '🍭', '🍓', '🧁', '🍦', '🍩', '🐾', '🐰'];
+            sticker.innerText = emojis[Math.floor(Math.random() * emojis.length)];
+            
+            sticker.style.left = Math.random() * 90 + 5 + 'vw';
+            sticker.style.top = Math.random() * 90 + 5 + 'vh';
+            sticker.style.fontSize = Math.random() * 2 + 2 + 'rem';
+            sticker.style.animationDelay = Math.random() * 2 + 's';
+
+            document.body.appendChild(sticker);
+
+            setTimeout(() => {
+                sticker.style.opacity = '0';
+                sticker.style.transition = 'opacity 2s';
+                setTimeout(() => sticker.remove(), 2000);
+            }, 8000 + Math.random() * 4000);
+        }
+
+        // 初始化
+        for(let i=0; i<6; i++) {
+            setTimeout(createSticker, i * 1500);
+        }
+        setInterval(createSticker, 6000);
+
         // 隨機產生夢幻泡泡
         function createBubble() {
             const bubble = document.createElement('div');
             bubble.className = 'bubble';
-            const size = Math.random() * 30 + 15; // 15px ~ 45px
+            const size = Math.random() * 30 + 10; 
             bubble.style.width = size + 'px';
             bubble.style.height = size + 'px';
             bubble.style.left = Math.random() * 100 + 'vw';
-            bubble.style.animationDuration = Math.random() * 4 + 5 + 's'; // 5s ~ 9s
-
+            bubble.style.animationDuration = Math.random() * 4 + 5 + 's';
+            
             document.body.appendChild(bubble);
 
             setTimeout(() => { bubble.remove(); }, 9000);
@@ -76,4 +104,4 @@
     </script>
 </body>
 
-</html>
+</html>

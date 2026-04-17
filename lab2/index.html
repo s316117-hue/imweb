@@ -3,38 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>照相亭 📸</title>
+    <title>莓莓照相亭 📸 | 超可愛記錄</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div class="flash" id="flash"></div>
+    
     <header>
-        <a href="../index.html" class="nav-back">👈 回首頁</a>
-        <h1>照相亭 📸</h1>
+        <a href="../index.html" class="nav-back">◀ 回首頁</a>
+        <h1>莓莓照相亭 📸</h1>
         <div style="width: 80px;"></div>
     </header>
 
-    <div class="booth-container">
-        <div class="camera-card">
-            <div class="lens">
-                <span>🐻</span>
-                <p>準備好要拍照了嗎？</p>
-                <button style="margin-top: 1rem; background: white; border: 2px solid #FFCA28; color: #FF6F00; padding: 0.5rem 1rem; border-radius: 20px; font-weight: 600; cursor: pointer;">開啟相機</button>
+    <main class="booth-container">
+        <div class="camera-section">
+            <div class="camera-card">
+                <div class="video-container">
+                    <video id="video" autoplay playsinline muted></video>
+                    <div id="countdown" class="countdown-overlay"></div>
+                    <div id="camera-placeholder" class="camera-placeholder">
+                        <span class="emoji">🧸</span>
+                        <p>準備好拍下可愛的瞬間了嗎？<br>點擊下方按鈕啟動</p>
+                    </div>
+                </div>
+                
+                <div class="controls">
+                    <button id="start-btn" class="control-btn primary">開啟相機 ✨</button>
+                    <button id="shutter-btn" class="shutter-btn" disabled>
+                        <span class="shutter-icon">📸</span>
+                    </button>
+                </div>
             </div>
-            <button class="shutter-btn">🌟</button>
         </div>
 
-        <div class="gallery">
-            <h2>🎞️ 你的相片</h2>
-            <div class="photos">
-                <div class="polaroid">
-                    <div class="polaroid-img">✌️</div>
-                </div>
-                <div class="polaroid">
-                    <div class="polaroid-img">🥰</div>
-                </div>
+        <aside class="gallery-section">
+            <div class="gallery-header">
+                <h2>🎞️ 美好回憶</h2>
+                <button id="clear-btn" class="clear-btn">清空回憶</button>
             </div>
-        </div>
-    </div>
+            <div id="photos-grid" class="photos-grid">
+                <!-- 照片會動態插入在這裡 -->
+            </div>
+        </aside>
+    </main>
+
+    <canvas id="canvas" style="display: none;"></canvas>
+
+    <script src="script.js"></script>
 </body>
 </html>
