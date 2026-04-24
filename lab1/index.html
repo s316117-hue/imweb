@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>盧廣仲猜歌挑戰 🎶 | 莓莓實驗室</title>
+    <title>流行音樂猜歌挑戰 🎶 | 莓莓實驗室</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -14,11 +14,11 @@
 
     <div class="game-card">
         <h1>猜歌挑戰 🎧</h1>
-        <p class="subtitle">這首「盧廣仲」的歌是哪一個呢？</p>
+        <p class="subtitle">聽聽看這是哪一首熱門歌曲呢？</p>
 
         <div class="stats">
             <span id="score">分數: 0</span>
-            <span id="level">關卡: 1/10</span>
+            <span id="level">關卡: 1/5</span>
         </div>
 
         <div class="record-container">
@@ -39,13 +39,13 @@
         <button id="next-btn" class="btn-next">下一題 ➔</button>
     </div>
 
-    <!-- 隱藏的 YouTube 播放器 -->
-    <div id="player" style="display: none;"></div>
+    <!-- 音樂播放器 -->
+    <audio id="audio-player" style="display: none;"></audio>
 
     <!-- 開始遊戲遮罩 (處理自動播放限制) -->
     <div id="start-overlay" class="result-overlay" style="display: flex; background: rgba(255, 245, 247, 0.98);">
         <h2 style="color: #FF8DA1;">準備好聽歌了嗎？</h2>
-        <p style="color: #6B4F4F;">點擊下方按鈕開始挑戰盧廣仲！</p>
+        <p style="color: #6B4F4F;">點擊下方按鈕開始猜歌挑戰！</p>
         <button id="real-start-btn" class="btn-next show">啟動挑戰 🎸</button>
     </div>
 
@@ -55,8 +55,6 @@
         <button onclick="location.reload()" class="btn-next show">再玩一次 🧸</button>
     </div>
 
-    <!-- 載入 YouTube API -->
-    <script src="https://www.youtube.com/iframe_api"></script>
     <script src="script.js"></script>
 </body>
 </html>

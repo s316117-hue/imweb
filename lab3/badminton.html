@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>萌萌羽球對決 🏸</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="badminton.css">
+</head>
+<body>
+    <a href="index.html" class="nav-back">👈 回遊樂場</a>
+
+    <div class="game-container">
+        <div class="game-header">
+            <h1>🏸 萌萌羽球對決 🏸</h1>
+            <div class="stats">
+                <span class="score-display">🐱 0 : 0 🐶</span>
+            </div>
+        </div>
+        
+        <div class="canvas-wrapper">
+            <canvas id="gameCanvas" width="600" height="400"></canvas>
+            <div id="gameOverScreen" class="overlay hidden">
+                <h2 id="winnerText">比賽結束!</h2>
+                <button id="restartBtn" class="btn">再比一次</button>
+            </div>
+            <div id="startScreen" class="overlay">
+                <h2>準備好打羽球了嗎？</h2>
+                <p>🐱 你的操作：<br>使用 <b>A / D</b> 移動<br>使用 <b>W</b> 跳躍<br>使用 <b>空白鍵</b> 揮拍擊球！</p>
+                <button id="startBtn" class="btn">開始比賽</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="badminton.js"></script>
+</body>
+</html>

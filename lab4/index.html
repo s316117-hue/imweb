@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>水槍泡泡大戰 💦</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <a href="../index.html" class="nav-back">👈 回首頁</a>
+
+    <div class="game-container">
+        <div class="game-header">
+            <h1>💦 水槍泡泡大戰 💦</h1>
+            <div class="stats">
+                <span class="score-display">分數: 0</span>
+                <span class="lives-display">生命: ❤️❤️❤️</span>
+            </div>
+        </div>
+        
+        <div class="canvas-wrapper">
+            <canvas id="gameCanvas" width="600" height="400"></canvas>
+            <div id="gameOverScreen" class="overlay hidden">
+                <h2>遊戲結束!</h2>
+                <p>你的分數是: <span id="finalScore">0</span></p>
+                <button id="restartBtn" class="btn">再來一次</button>
+            </div>
+            <div id="startScreen" class="overlay">
+                <h2>準備好發射泡泡了嗎？</h2>
+                <p>使用 ⬅️ ➡️ 或 A D 移動，點擊畫面發射泡泡！<br>不要讓小烏雲掉下來喔！</p>
+                <button id="startBtn" class="btn">開始遊戲</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -3,21 +3,68 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>自己發想 🎨</title>
+    <title>雙享遊樂場 🎡</title>
     <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../style.css"> <!-- Use main style for cards -->
+    <style>
+        body {
+            background-color: #FFF3E0;
+            background-image: radial-gradient(#FFE0B2 2px, transparent 2px);
+            background-size: 30px 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 5rem;
+            min-height: 100vh;
+        }
+        .arcade-title {
+            font-size: 3rem;
+            color: #FF9800;
+            text-shadow: 2px 2px 0px #FFE0B2;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        .nav-back {
+            position: absolute;
+            top: 2rem;
+            left: 2rem;
+            color: #E65100;
+            text-decoration: none;
+            font-weight: 600;
+            background: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            box-shadow: 0 4px 0 #FFE0B2;
+        }
+        .nav-back:active { transform: translateY(4px); box-shadow: 0 0 0 #FFE0B2; }
+    </style>
 </head>
 <body>
     <a href="../index.html" class="nav-back">👈 回首頁</a>
 
-    <div class="sandbox">
-        <div class="decor d1">🪴</div>
-        <div class="decor d2">🪁</div>
-        
-        <h1>🎨 自己發想</h1>
-        <p>這是一個充滿魔法的沙盒！<br>把你的超棒點子在這裡實現吧，任何天馬行空的創意都很歡迎喔！✨</p>
-        
-        <a href="#" class="btn">🚀 開始發揮創意</a>
+    <h1 class="arcade-title">🎡 雙享遊樂場</h1>
+
+    <div class="labs-container">
+        <a href="memory.html" class="lab-card">
+            <span class="lab-number">GAME 1</span>
+            <div class="emoji-icon">🍓</div>
+            <h2 class="lab-title">表情配對</h2>
+            <p class="lab-desc">來挑戰記憶力！翻開可愛的表情符號，找出所有的配對吧！</p>
+        </a>
+
+        <a href="badminton.html" class="lab-card">
+            <span class="lab-number">GAME 2</span>
+            <div class="emoji-icon">🏸</div>
+            <h2 class="lab-title">萌萌羽球</h2>
+            <p class="lab-desc">化身小貓咪，與小狗狗來一場熱血又可愛的羽球對決！</p>
+        </a>
+
+        <a href="shooter.html" class="lab-card">
+            <span class="lab-number">GAME 3</span>
+            <div class="emoji-icon">💦</div>
+            <h2 class="lab-title">水槍泡泡大戰</h2>
+            <p class="lab-desc">化身可愛小兔兔，發射夢幻泡泡擊退壞壞蟲與小烏雲！</p>
+        </a>
     </div>
 </body>
 </html>

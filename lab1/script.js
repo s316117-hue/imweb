@@ -1,21 +1,40 @@
 const songs = [
-    { title: "刻在我心底的名字", youtubeId: "RkX7qn2x230", startTime: 100, options: ["刻在我心底的名字", "魚仔", "幾分之幾", "我愛你"] },
-    { title: "魚仔", youtubeId: "ybfWYpYhTQQ", startTime: 60, options: ["大人", "魚仔", "明仔載", "一定要相信自己"] },
-    { title: "幾分之幾", youtubeId: "HQ_mU73VhEQ", startTime: 120, options: ["幾分之幾", "舒服", "愛情怎麼了", "早安，晨之美！"] },
-    { title: "我愛你", youtubeId: "5luGpoxWdbo", startTime: 45, options: ["我愛你", "快快愛", "一百種生活", "校園美女2008"] },
-    { title: "早安，晨之美！", youtubeId: "aG45aF95C48", startTime: 30, options: ["再見勾勾", "早安，晨之美！", "風箏", "無敵鐵金剛"] },
-    { title: "一定要相信自己", youtubeId: "3xx4RlPfvUw", startTime: 80, options: ["一定要相信自己", "大人", "明仔載", "燃燒卡路里"] },
-    { title: "大人", youtubeId: "Vz804Qp9V20", startTime: 50, options: ["大人", "魚仔", "幾分之幾", "刻在我心底的名字"] },
-    { title: "一百種生活", youtubeId: "S01Z9p_S6pE", startTime: 20, options: ["我愛你", "一百種生活", "校園美女2008", "快快愛"] },
-    { title: "明仔載", youtubeId: "Cf2pDbqUqoQ", startTime: 40, options: ["明仔載", "一定要相信自己", "魚仔", "幾分之幾"] },
-    { title: "愛情怎麼了", youtubeId: "rD-T5pzH9b0", startTime: 70, options: ["幾分之幾", "舒服", "愛情怎麼了", "大人"] }
+    { 
+        title: "GIVE LOVE", 
+        file: "17/Akdong Musician(AKMU) - GIVE LOVE M_V - AKMU (youtube).mp3", 
+        startTime: 65,
+        options: ["GIVE LOVE", "200%", "RE-BYE", "DINOSAUR"] 
+    },
+    { 
+        title: "Lost", 
+        file: "17/Jony J滿舒克- Lost『你總是盤旋在我腦海裡面』【動態歌詞Lyrics】 - 漫迹太空 (youtube).mp3", 
+        startTime: 48,
+        options: ["Lost", "不用去猜", "慢慢來", "玩家"] 
+    },
+    { 
+        title: "Love Yourself", 
+        file: "17/Love Yourself【愛妳自己】Justin Bieber  中文字幕 - Dawn Dawson (youtube).mp3", 
+        startTime: 55,
+        options: ["Love Yourself", "Sorry", "Baby", "Stay"] 
+    },
+    { 
+        title: "我喜歡你 I Like You", 
+        file: "17/派偉俊 Patrick Brasca【我喜歡你 I Like You】Official MV - 派偉俊 Patrick Brasca (youtube) (2).mp3", 
+        startTime: 52,
+        options: ["我喜歡你 I Like You", "保護你", "爸爸的肩膀", "不求回報"] 
+    },
+    { 
+        title: "別怕變老", 
+        file: "17/王以太,艾热 AIR - 别怕变老「对面女孩 看过来 看着我 别再盯着镜子盯着自己手机摄像头」【動態歌詞_Lyrics Video】 - WCY RAP (youtube).mp3", 
+        startTime: 68,
+        options: ["別怕變老", "星球墜落", "目不轉睛", "阿司匹林"] 
+    }
 ];
 
 let currentLevel = 0;
 let score = 0;
 let canAnswer = false;
-let ytPlayer = null;
-let isYtReady = false;
+let playbackTimer = null;
 
 const record = document.getElementById('record');
 const musicNotes = document.getElementById('music-notes');
@@ -27,24 +46,7 @@ const resultOverlay = document.getElementById('result-overlay');
 const resultScore = document.getElementById('result-score');
 const startOverlay = document.getElementById('start-overlay');
 const realStartBtn = document.getElementById('real-start-btn');
-
-// YouTube IFrame API Ready
-function onYouTubeIframeAPIReady() {
-    ytPlayer = new YT.Player('player', {
-        height: '0',
-        width: '0',
-        videoId: '',
-        playerVars: {
-            'autoplay': 0,
-            'controls': 0,
-            'showinfo': 0,
-            'rel': 0
-        },
-        events: {
-            'onReady': () => { isYtReady = true; }
-        }
-    });
-}
+const audioPlayer = document.getElementById('audio-player');
 
 // 音效系統 (使用 Web Audio API)
 const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
@@ -99,14 +101,24 @@ function loadLevel() {
     const song = songs[currentLevel];
     optionsContainer.innerHTML = '';
     
-    // 播放 YouTube 音樂
-    if (isYtReady && ytPlayer) {
-        ytPlayer.loadVideoById({
-            videoId: song.youtubeId,
-            startSeconds: song.startTime
-        });
-        ytPlayer.playVideo();
-    }
+    // 播放音樂文件
+    audioPlayer.src = encodeURI(song.file);
+    audioPlayer.oncanplay = () => {
+        audioPlayer.currentTime = song.startTime; // 從副歌開始播放
+        audioPlayer.play();
+        audioPlayer.oncanplay = null;
+        
+        // 15 秒後停止播放
+        clearTimeout(playbackTimer);
+        playbackTimer = setTimeout(() => {
+            if (!audioPlayer.paused) {
+                audioPlayer.pause();
+                record.classList.remove('playing');
+                musicNotes.classList.remove('active');
+            }
+        }, 15000);
+    };
+    audioPlayer.load();
     
     // 打亂選項
     const shuffledOptions = [...song.options].sort(() => Math.random() - 0.5);
@@ -123,12 +135,13 @@ function checkAnswer(selected, element) {
     if (!canAnswer) return;
     canAnswer = false;
     
+    clearTimeout(playbackTimer);
     const song = songs[currentLevel];
     record.classList.remove('playing');
     musicNotes.classList.remove('active');
     
     // 停止音樂
-    if (ytPlayer) ytPlayer.stopVideo();
+    audioPlayer.pause();
     
     if (selected === song.title) {
         element.classList.add('correct');
