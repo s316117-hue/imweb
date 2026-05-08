@@ -1,0 +1,214 @@
+:root {
+    --neon-blue: #00d2ff;
+    --neon-cyan: #3a7bd5;
+    --neon-purple: #7117ea;
+    --dark-bg: #02050a;
+    --glass: rgba(255, 255, 255, 0.05);
+    --glass-border: rgba(255, 255, 255, 0.1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Outfit', 'Noto Sans TC', sans-serif;
+    background-color: var(--dark-bg);
+    color: white;
+    min-height: 100vh;
+    overflow: hidden;
+    perspective: 1000px;
+}
+
+/* Canvases */
+#particle-canvas, #hand-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+#particle-canvas { z-index: 0; }
+#hand-canvas { z-index: 10; pointer-events: none; }
+
+/* Cyber Grid Floor */
+.grid-floor {
+    position: fixed;
+    bottom: -100px;
+    left: -50%;
+    width: 200%;
+    height: 500px;
+    background-image: 
+        linear-gradient(rgba(0, 210, 255, 0.2) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 210, 255, 0.2) 1px, transparent 1px);
+    background-size: 50px 50px;
+    transform: rotateX(60deg);
+    z-index: 1;
+    animation: grid-move 5s linear infinite;
+    mask-image: linear-gradient(to top, black, transparent);
+}
+
+@keyframes grid-move {
+    0% { background-position: 0 0; }
+    100% { background-position: 0 50px; }
+}
+
+.container {
+    position: relative;
+    z-index: 5;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+}
+
+main {
+    width: 100%;
+    max-width: 1400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3rem;
+    text-shadow: 0 10px 20px rgba(0,0,0,0.5);
+}
+
+/* Typography */
+.school-name-top {
+    font-size: 1.5rem;
+    letter-spacing: 5px;
+    color: var(--neon-blue);
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    text-align: center;
+    opacity: 0.8;
+}
+
+.giant-title {
+    font-size: 8rem;
+    line-height: 0.9;
+    text-align: center;
+    font-weight: 900;
+}
+
+.giant-title span {
+    display: block;
+}
+
+.glowing-text {
+    background: linear-gradient(to bottom, #fff, var(--neon-blue), var(--neon-purple));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 20px rgba(0, 210, 255, 0.8));
+}
+
+.motto-box {
+    margin-top: 2rem;
+    font-size: 2rem;
+    letter-spacing: 15px;
+    background: var(--glass);
+    padding: 1rem 3rem;
+    border-radius: 100px;
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 0 30px rgba(0,0,0,0.3);
+}
+
+.separator {
+    margin: 0 20px;
+    opacity: 0.3;
+}
+
+/* Interactive Elements */
+.stats-row {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+}
+
+.big-glass-card {
+    background: var(--glass);
+    border: 1px solid var(--glass-border);
+    padding: 1.5rem 3rem;
+    border-radius: 20px;
+    font-size: 2.5rem;
+    font-family: monospace;
+    backdrop-filter: blur(20px);
+}
+
+.big-action-btn {
+    background: linear-gradient(45deg, var(--neon-blue), var(--neon-purple));
+    border: none;
+    padding: 1.5rem 4rem;
+    border-radius: 20px;
+    color: white;
+    font-size: 2rem;
+    font-weight: 900;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 30px rgba(0, 210, 255, 0.4);
+}
+
+.big-action-btn:hover {
+    transform: scale(1.1) translateY(-5px) rotate(1deg);
+    box-shadow: 0 0 60px rgba(113, 23, 234, 0.6);
+}
+
+/* News Ticker */
+.news-ticker-v2 {
+    width: 100%;
+    overflow: hidden;
+    padding: 1rem;
+    border-radius: 15px;
+    background: rgba(0,0,0,0.4);
+}
+
+.ticker-content {
+    white-space: nowrap;
+    font-size: 1.5rem;
+    display: inline-block;
+    animation: ticker-v2 30s linear infinite;
+}
+
+@keyframes ticker-v2 {
+    from { transform: translateX(100vw); }
+    to { transform: translateX(-100%); }
+}
+
+/* Status Indicator */
+#camera-status {
+    position: fixed;
+    top: 30px;
+    left: 30px;
+    padding: 1rem 2rem;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    z-index: 100;
+    background: var(--glass);
+    border: 1px solid var(--glass-border);
+}
+
+.status-dot {
+    width: 15px;
+    height: 15px;
+    background: #ffcc00;
+    border-radius: 50%;
+    box-shadow: 0 0 10px #ffcc00;
+}
+
+#camera-status.active .status-dot {
+    background: #00ff00;
+    box-shadow: 0 0 15px #00ff00;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .giant-title { font-size: 5rem; }
+    .motto-box { font-size: 1.2rem; letter-spacing: 8px; }
+}

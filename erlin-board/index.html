@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>歡迎加入二林工商 | 互動歡迎看板</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@700;900&family=Noto+Sans+TC:wght@700;900&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Heavy Particle Background -->
+    <canvas id="particle-canvas"></canvas>
+    <div class="grid-floor"></div>
+
+    <!-- Camera Input (Hidden) -->
+    <video id="webcam" autoplay playsinline style="display: none;"></video>
+    
+    <!-- Large Status Indicator -->
+    <div id="camera-status" class="glass-card">
+        <div class="status-dot"></div>
+        <span class="status-text">AI 偵測啟動中...</span>
+    </div>
+
+    <div class="container">
+        <main>
+            <div class="welcome-container">
+                <p class="school-name-top">國立二林高級工商職業學校</p>
+                <h1 class="giant-title">
+                    <span class="line-1">歡迎加入</span>
+                    <span class="line-2 glowing-text">二林工商</span>
+                </h1>
+                <div class="motto-box">
+                    <span>忠 誠 精 實</span>
+                    <span class="separator">|</span>
+                    <span>敦 品 勵 學</span>
+                </div>
+            </div>
+
+            <div class="stats-row">
+                <div id="digital-clock" class="big-glass-card">00:00:00</div>
+                <button id="cheer-btn" class="big-action-btn">
+                    <span class="btn-icon">🔥</span>
+                    <span class="btn-text">全校加油！</span>
+                </button>
+            </div>
+        </main>
+    </div>
+
+    <!-- Hand Tracking Canvas (Overlay) -->
+    <canvas id="hand-canvas"></canvas>
+
+    <!-- Scripts -->
+    <script type="module" src="script.js"></script>
+</body>
+</html>
