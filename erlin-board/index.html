@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>歡迎加入二林工商 | 互動歡迎看板</title>
+    <title>歡迎加入二林工商資處科 | 互動歡迎看板</title>
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@700;900&family=Noto+Sans+TC:wght@700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;700;900&family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="style.css">
 </head>
@@ -17,42 +17,115 @@
     <canvas id="particle-canvas"></canvas>
     <div class="grid-floor"></div>
 
-    <!-- Camera Input (Hidden) -->
-    <video id="webcam" autoplay playsinline style="display: none;"></video>
-    
-    <!-- Large Status Indicator -->
-    <div id="camera-status" class="glass-card">
-        <div class="status-dot"></div>
-        <span class="status-text">AI 偵測啟動中...</span>
-    </div>
-
-    <div class="container">
-        <main>
-            <div class="welcome-container">
-                <p class="school-name-top">國立二林高級工商職業學校</p>
-                <h1 class="giant-title">
-                    <span class="line-1">歡迎加入</span>
-                    <span class="line-2 glowing-text">二林工商</span>
-                </h1>
-                <div class="motto-box">
-                    <span>忠 誠 精 實</span>
-                    <span class="separator">|</span>
-                    <span>敦 品 勵 學</span>
+    <!-- Main Container -->
+    <div class="app-container">
+        
+        <!-- Header -->
+        <header class="app-header glass-card">
+            <div class="logo-area">
+                <span class="logo-icon">🏫</span>
+                <div class="logo-text">
+                    <span class="school-title">二林工商資處科</span>
+                    <span class="sub-title">資料處理科 Info Processing</span>
                 </div>
             </div>
-
-            <div class="stats-row">
-                <div id="digital-clock" class="big-glass-card">00:00:00</div>
-                <button id="cheer-btn" class="big-action-btn">
-                    <span class="btn-icon">🔥</span>
-                    <span class="btn-text">全校加油！</span>
-                </button>
+            
+            <div class="header-widgets">
+                <!-- Weather Widget -->
+                <div class="weather-widget">
+                    <span class="weather-icon">☀️</span>
+                    <span class="weather-temp">28°C</span>
+                    <span class="weather-location">二林鎮</span>
+                </div>
+                
+                <span class="widget-separator">|</span>
+                
+                <!-- Date & Clock -->
+                <div class="clock-widget">
+                    <span id="digital-date" class="date-text">2026/06/05</span>
+                    <span id="digital-clock" class="clock-text">09:38:00</span>
+                </div>
             </div>
-        </main>
+        </header>
+
+        <div class="main-layout">
+            <!-- Content Area -->
+            <main class="content-area">
+                
+                <!-- Welcome Panel -->
+                <section id="welcome-panel" class="welcome-panel">
+                    <div class="welcome-hero">
+                        <h1 class="hero-title">
+                            <span class="title-line-1">歡　迎　蒞　臨</span>
+                            <span class="title-line-2 glowing-text">二林工商資處科</span>
+                        </h1>
+                        <p class="hero-desc">培養數位商務、網頁設計與人工智慧應用人才。探索資訊科技與資料處理的無限可能！</p>
+                    </div>
+
+                    <div class="welcome-stats">
+                        <div class="stat-card glass-card">
+                            <div class="stat-icon">🔥</div>
+                            <div class="stat-info">
+                                <span class="stat-label">今日加油次數</span>
+                                <span id="cheer-count" class="stat-value">88</span>
+                            </div>
+                        </div>
+                        <button id="cheer-btn" class="big-action-btn">
+                            <span class="btn-icon">🔥</span>
+                            <span class="btn-text">空中握拳 / 點擊加油！</span>
+                        </button>
+                    </div>
+                </section>
+            </main>
+        </div>
+    </div>
+
+    <!-- Float Camera Preview Box -->
+    <div id="camera-preview-container" class="glass-card hidden">
+        <div class="camera-header">
+            <span class="cam-dot"></span>
+            <span class="cam-title">AI EYE CAMERA</span>
+        </div>
+        <div class="video-wrapper">
+            <video id="webcam" autoplay playsinline muted></video>
+            <div class="scanner-overlay">
+                <div class="scan-line"></div>
+            </div>
+        </div>
+        <div class="camera-footer">
+            <span id="detection-status" class="status-msg">正在加載 AI 核心...</span>
+        </div>
     </div>
 
     <!-- Hand Tracking Canvas (Overlay) -->
     <canvas id="hand-canvas"></canvas>
+
+    <!-- Custom Glowing Hand Cursor -->
+    <div id="hand-cursor" class="hidden">
+        <div class="cursor-dot"></div>
+        <div class="cursor-ring-wrapper">
+            <svg class="progress-ring" width="60" height="60">
+                <circle class="progress-ring__circle-bg" stroke="rgba(255,255,255,0.2)" stroke-width="4" fill="transparent" r="24" cx="30" cy="30" />
+                <circle class="progress-ring__circle" stroke="#00ffcc" stroke-width="4" fill="transparent" r="24" cx="30" cy="30" stroke-dasharray="150.79" stroke-dashoffset="150.79" />
+            </svg>
+        </div>
+    </div>
+
+    <!-- AI Startup Overlay -->
+    <div id="ai-startup-overlay">
+        <div class="startup-content">
+            <p class="startup-school">國立二林高級工商職業學校</p>
+            <h1 class="startup-dept">二林工商資處科</h1>
+            <div class="startup-divider"></div>
+            <div class="startup-logo">✋</div>
+            <h2 class="startup-title">AI 手部偵測互動看板</h2>
+            <div class="startup-bar-wrap">
+                <div id="startup-bar" class="startup-bar"></div>
+            </div>
+            <p id="startup-msg" class="startup-msg">正在載入 AI 模型中...</p>
+            <p class="startup-hint">請在瀏覽器允許相機存取權限</p>
+        </div>
+    </div>
 
     <!-- Scripts -->
     <script type="module" src="script.js"></script>
