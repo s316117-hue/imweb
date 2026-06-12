@@ -15,6 +15,14 @@
     <header>
         <h1>✨ 莓幫派 想加入嗎 ✨</h1>
         <p class="subtitle">一起探索最可愛的創意空間！</p>
+        <div class="header-widgets">
+            <button id="ai-toggle-btn" class="widget-btn">✋ 啟動 AI 魔法鏡頭</button>
+            <div class="cheer-widget">
+                <span class="cheer-icon">💖</span>
+                <span class="cheer-label">魔法加油: </span>
+                <span id="cheer-count" class="cheer-value">88</span>
+            </div>
+        </div>
     </header>
 
     <div class="labs-container">
@@ -38,70 +46,54 @@
             <h2 class="lab-title">雙享遊樂場</h2>
             <p class="lab-desc">一次擁有三個遊戲！來玩表情配對、羽球對決，還有水槍泡泡大戰！</p>
         </a>
+
+        <a href="lab4/index.html" class="lab-card">
+            <span class="lab-number">LAB 04</span>
+            <div class="emoji-icon">💦</div>
+            <h2 class="lab-title">水槍泡泡大戰</h2>
+            <p class="lab-desc">發射夢幻泡泡擊退烏雲！挑戰你的反應與射擊技巧～</p>
+        </a>
+
+        <a href="lab5/index.html" class="lab-card">
+            <span class="lab-number">LAB 05</span>
+            <div class="emoji-icon">✨</div>
+            <h2 class="lab-title">AI 魔法互動看板</h2>
+            <p class="lab-desc">用你的手施展魔法！特效跟著手動，還能握拳加油！</p>
+        </a>
+
     </div>
 
-    <!-- 酷酷特效腳本 -->
-    <script>
-        // 點擊特效：愛心與星星
-        document.addEventListener('click', function (e) {
-            const effect = document.createElement('div');
-            effect.className = 'click-effect';
-            effect.style.left = e.pageX + 'px';
-            effect.style.top = e.pageY + 'px';
+    <!-- AI Canvases & Overlays -->
+    <canvas id="particle-canvas"></canvas>
+    <canvas id="hand-canvas"></canvas>
 
-            const emojis = ['💖', '✨', '🌸', '🎀', '⭐', '🎈', '🍭', '🧸', '🌈'];
-            
-            effect.innerText = emojis[Math.floor(Math.random() * emojis.length)];
+    <div id="camera-preview-container" class="glass-card hidden">
+        <div class="camera-header">
+            <span class="cam-dot"></span>
+            <span class="cam-title">AI CUTE CAMERA 🌸</span>
+        </div>
+        <div class="video-wrapper">
+            <video id="webcam" autoplay playsinline muted></video>
+            <div class="scanner-overlay"><div class="scan-line"></div></div>
+        </div>
+        <div class="camera-footer">
+            <span id="detection-status" class="status-msg">點擊上方按鈕啟動...</span>
+        </div>
+    </div>
 
-            document.body.appendChild(effect);
+    <!-- Custom Glowing Hand Cursor -->
+    <div id="hand-cursor" class="hidden">
+        <div class="cursor-dot"></div>
+        <div class="cursor-ring-wrapper">
+            <svg class="progress-ring" width="60" height="60">
+                <circle class="progress-ring__circle-bg" stroke="rgba(255,183,197,0.3)" stroke-width="4" fill="transparent" r="24" cx="30" cy="30" />
+                <circle class="progress-ring__circle" stroke="#FF8DA1" stroke-width="4" fill="transparent" r="24" cx="30" cy="30" stroke-dasharray="150.79" stroke-dashoffset="150.79" />
+            </svg>
+        </div>
+    </div>
 
-            setTimeout(() => { effect.remove(); }, 1000);
-        });
-
-        // 隨機產生背景貼紙 (Stickers)
-        function createSticker() {
-            const sticker = document.createElement('div');
-            sticker.className = 'sticker';
-            const emojis = ['🌸', '🎀', '🧸', '🍭', '🍓', '🧁', '🍦', '🍩', '🐾', '🐰'];
-            sticker.innerText = emojis[Math.floor(Math.random() * emojis.length)];
-            
-            sticker.style.left = Math.random() * 90 + 5 + 'vw';
-            sticker.style.top = Math.random() * 90 + 5 + 'vh';
-            sticker.style.fontSize = Math.random() * 2 + 2 + 'rem';
-            sticker.style.animationDelay = Math.random() * 2 + 's';
-
-            document.body.appendChild(sticker);
-
-            setTimeout(() => {
-                sticker.style.opacity = '0';
-                sticker.style.transition = 'opacity 2s';
-                setTimeout(() => sticker.remove(), 2000);
-            }, 8000 + Math.random() * 4000);
-        }
-
-        // 初始化
-        for(let i=0; i<6; i++) {
-            setTimeout(createSticker, i * 1500);
-        }
-        setInterval(createSticker, 6000);
-
-        // 隨機產生夢幻泡泡
-        function createBubble() {
-            const bubble = document.createElement('div');
-            bubble.className = 'bubble';
-            const size = Math.random() * 30 + 10; 
-            bubble.style.width = size + 'px';
-            bubble.style.height = size + 'px';
-            bubble.style.left = Math.random() * 100 + 'vw';
-            bubble.style.animationDuration = Math.random() * 4 + 5 + 's';
-            
-            document.body.appendChild(bubble);
-
-            setTimeout(() => { bubble.remove(); }, 9000);
-        }
-
-        setInterval(createBubble, 600);
-    </script>
+    <!-- External Script -->
+    <script type="module" src="script.js"></script>
 </body>
 
 </html>

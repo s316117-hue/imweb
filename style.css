@@ -83,6 +83,8 @@ p.subtitle {
 .lab-card:nth-child(1) { background-color: var(--secondary-pink); }
 .lab-card:nth-child(2) { background-color: var(--accent-blue); }
 .lab-card:nth-child(3) { background-color: #E2F0CB; }
+.lab-card:nth-child(4) { background-color: #FFDFD3; }
+.lab-card:nth-child(5) { background-color: #E0BBE4; }
 
 .lab-card:hover {
     transform: translateY(-20px) scale(1.05) rotate(2deg);
@@ -176,3 +178,194 @@ p.subtitle {
     90% { opacity: 0.8; }
     100% { transform: translateY(-110vh) scale(1.5); opacity: 0; }
 }
+
+/* ==========================================
+   AI TRACKING WIDGETS & CANVASES
+   ========================================== */
+
+.header-widgets {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+    align-items: center;
+}
+
+.widget-btn {
+    background: white;
+    border: 2px solid #FFB7C5;
+    border-radius: 20px;
+    padding: 0.6rem 1.2rem;
+    color: #FF8DA1;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 700;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 0 #FFE4E1;
+}
+
+.widget-btn:hover {
+    transform: translateY(2px);
+    box-shadow: 0 2px 0 #FFE4E1;
+    background: #FFF5F7;
+}
+
+.cheer-widget {
+    background: white;
+    border-radius: 20px;
+    padding: 0.6rem 1.2rem;
+    font-weight: 700;
+    color: #FF8DA1;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 4px 10px rgba(255, 183, 197, 0.2);
+}
+
+.cheer-value {
+    font-size: 1.2rem;
+    color: #E91E63;
+}
+
+#particle-canvas {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    z-index: -1;
+    pointer-events: none;
+}
+
+#hand-canvas {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    z-index: 990;
+    pointer-events: none;
+}
+
+/* Floating Camera Preview */
+#camera-preview-container {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 220px;
+    padding: 10px;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    border: 2px solid #FFB7C5;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(255, 183, 197, 0.4);
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+#camera-preview-container.hidden {
+    transform: translateY(150px);
+    opacity: 0;
+    pointer-events: none;
+}
+
+.camera-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.cam-dot {
+    width: 10px; height: 10px;
+    background: #ff4757;
+    border-radius: 50%;
+    animation: blinking 1.5s infinite;
+}
+
+@keyframes blinking {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 1; }
+}
+
+.cam-title {
+    font-size: 0.8rem;
+    font-weight: 800;
+    color: #FF8DA1;
+}
+
+.video-wrapper {
+    width: 100%;
+    aspect-ratio: 4/3;
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+    border: 2px solid #FFE4E1;
+}
+
+#webcam {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    transform: scaleX(-1);
+    background-color: #ffeef2;
+}
+
+.scanner-overlay {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+}
+
+.scan-line {
+    width: 100%; height: 2px;
+    background: linear-gradient(to right, transparent, #FF8DA1, transparent);
+    position: absolute; top: 0;
+    box-shadow: 0 0 8px #FF8DA1;
+    animation: scan 3s linear infinite;
+}
+
+@keyframes scan {
+    0% { top: 0%; }
+    50% { top: 100%; }
+    100% { top: 0%; }
+}
+
+.camera-footer {
+    text-align: center;
+}
+
+.status-msg {
+    font-size: 0.8rem;
+    color: #FF8DA1;
+    font-weight: 600;
+}
+
+/* Custom Glowing Hand Cursor */
+#hand-cursor {
+    position: fixed;
+    width: 60px; height: 60px;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    z-index: 10000;
+    transition: opacity 0.2s ease;
+}
+
+#hand-cursor.hidden { opacity: 0; }
+
+.cursor-dot {
+    position: absolute;
+    top: 50%; left: 50%;
+    width: 12px; height: 12px;
+    background: white;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 15px 4px #FF8DA1;
+}
+
+.cursor-ring-wrapper {
+    position: absolute;
+    top: 0; left: 0;
+    width: 60px; height: 60px;
+}
+
+.progress-ring { transform: rotate(-90deg); }
+.progress-ring__circle { transition: stroke-dashoffset 0.1s linear; }

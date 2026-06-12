@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>二林工商資處科 | AI 手部互動看板</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;700;900&family=Noto+Sans+TC:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- ── 粒子背景 & 手部特效畫布 ── -->
+    <canvas id="bg-canvas"></canvas>
+    <canvas id="fx-canvas"></canvas>
+
+    <!-- ── 網格地板 ── -->
+    <div class="grid-floor"></div>
+
+    <!-- ── 回首頁 ── -->
+    <a href="../index.html" class="nav-back">👈 回首頁</a>
+
+    <!-- ── 浮動相機預覽 ── -->
+    <div id="cam-box" class="hidden">
+        <div class="cam-header">
+            <span class="cam-dot"></span>
+            <span class="cam-label">AI EYE CAMERA</span>
+        </div>
+        <div class="cam-frame">
+            <video id="webcam" autoplay playsinline muted></video>
+            <div class="cam-scanline"></div>
+        </div>
+        <div id="cam-status" class="cam-status">正在初始化...</div>
+    </div>
+
+    <!-- ── 自訂手部游標 ── -->
+    <div id="hand-cursor" class="hidden">
+        <div class="cursor-core"></div>
+        <svg class="cursor-ring-svg" viewBox="0 0 80 80">
+            <circle class="ring-track" cx="40" cy="40" r="32"/>
+            <circle class="ring-bar" id="ring-progress" cx="40" cy="40" r="32"/>
+        </svg>
+    </div>
+
+    <!-- ── AI 啟動遮罩 ── -->
+    <div id="startup-overlay">
+        <div class="startup-inner">
+            <p class="startup-school">國立二林高級工商職業學校</p>
+            <h1 class="startup-dept">二林工商資處科</h1>
+            <div class="startup-divider"></div>
+            <div class="startup-hand">✋</div>
+            <h2 class="startup-title">AI 手部偵測互動看板</h2>
+            <div class="bar-wrap"><div id="startup-bar" class="bar-fill"></div></div>
+            <p id="startup-msg" class="startup-msg">正在載入 AI 模型中...</p>
+            <p class="startup-hint">請在瀏覽器允許相機存取權限</p>
+        </div>
+    </div>
+
+    <!-- ── 主內容 ── -->
+    <div class="app">
+
+        <!-- Header -->
+        <header class="app-header glass">
+            <div class="logo">
+                <span class="logo-icon">🏫</span>
+                <div class="logo-text">
+                    <span class="school-name">二林工商資處科</span>
+                    <span class="school-sub">資料處理科 · Info Processing Dept.</span>
+                </div>
+            </div>
+            <div class="header-right">
+                <div class="clock-widget">
+                    <span id="digital-date" class="clock-date">2026/06/12</span>
+                    <span id="digital-clock" class="clock-time">00:00:00</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Welcome Hero -->
+        <main class="hero">
+            <div class="hero-eyebrow">歡　迎　蒞　臨</div>
+            <h2 class="hero-title glow-text">二林工商資處科</h2>
+            <p class="hero-desc">培養數位商務、網頁設計與人工智慧應用人才<br>探索資訊科技與資料處理的無限可能！</p>
+
+            <div class="action-row">
+                <!-- 加油統計 -->
+                <div class="cheer-card glass">
+                    <span class="cheer-icon">🔥</span>
+                    <div class="cheer-info">
+                        <span class="cheer-label">今日加油次數</span>
+                        <span id="cheer-count" class="cheer-count">88</span>
+                    </div>
+                </div>
+
+                <!-- 加油按鈕 -->
+                <button id="cheer-btn" class="cheer-btn">
+                    <span class="btn-icon">🔥</span>
+                    <span>空中握拳 / 點擊加油！</span>
+                </button>
+            </div>
+
+            <!-- 手勢提示 (AI 啟動後顯示) -->
+            <div id="gesture-guide" class="gesture-guide hidden">
+                <div class="gesture-item"><span class="g-icon">✋</span><span>移動手指 → 炫彩特效</span></div>
+                <div class="gesture-item"><span class="g-icon">✊</span><span>握拳 → 加油！</span></div>
+                <div class="gesture-item"><span class="g-icon">👆</span><span>懸停按鈕 → 自動觸發</span></div>
+            </div>
+        </main>
+
+    </div>
+
+    <script type="module" src="script.js"></script>
+</body>
+</html>
